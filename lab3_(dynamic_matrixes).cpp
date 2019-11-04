@@ -90,6 +90,12 @@ int main() {
   cout << "Номер первой строки в которой содержится самая длинная" << endl;
   cout << "строго возрастающая последовательность чисел (нумерация с 0) равен "
        << number_of_first_row(arr, 2 * m, n) << endl;
+  
+  for (int i = 0; i < 2 * m; i++){
+        delete[] arr[i];
+    }
+  delete[] arr; ///очищаем массив
+  
   system("pause");
   return 0;
 }
