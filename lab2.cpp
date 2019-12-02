@@ -89,11 +89,15 @@ int main() {
   int j, x;
   cout << "Введите параметр для упорядочивания элементов массива" << endl;
   cin >> x;
-  for (int i = 0; i < n - 1; i++) {
-    for (int j = 0; j < n - i - 1; j++) {
-      if (abs(v[j]) > x) {
-        swap(v[j], v[j + 1]);
+  int ind = 0;
+  for (int i = 0; i < n; i++) {
+    if (abs(v[i]) <= x) {
+      int temp = v[i];
+      for (int j = i; j > ind; j--) {
+        v[j] = v[j - 1];
       }
+      v[ind] = temp;
+      ind++;
     }
   }
   cout << "Упорядоченный массив" << endl;
