@@ -2,40 +2,39 @@
 символы которых не убывают, во втором – строки, символы которых не возрастают.
  Порядок строк выходных файлов должен соответствовать их порядку во входном файле. */
 
-#include <cstring>
-#include <fstream>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
-bool Increase(char* str) {
-  bool flag = true;
-  for (int i = 0; i < strlen(str) - 1; i++) {
-    if (str[i] >= str[i + 1]) {
-      flag = false;
-    }
-  }
-  return flag;
+bool Increase (string str){
+  string buffer = str;
+  sort(str.begin(), str.end());
+  return str == buffer;
 }
 
-int main() {
+bool Decrease (string str){
+  string buffer = str;
+  sort(str.begin(), str.end());
+  reverse(str.begin(), str.end());
+  return str == buffer;
+}
+
+int main(){
   ifstream fin("input.txt");
-  ofstream fout("output.txt");
-  int number_of_string = 0;
-  while (!fin.eof()) {
-    number_of_string++;
-    char* str = new char[300];
-    fin.getline(str, 300, '\n');
-    char* pch = strtok(str, " ");
-    bool flag = true;
-    while (pch != NULL) {
-      if (Increase(pch)) {
-        fout << number_of_string << " " << pch << endl;
-        break;
+  ofstream fout("output1.txt");
+  ofstream lout("output2.txt");
+  while(!fin.eof()){
+    string str;
+    getline(fin, str, '\n');
+    if(Increase(str)){
+        fout<<str<<endl;
       }
-      pch = strtok(NULL, " ,.-");
-    }
-    delete[] str;
+    if(Decrease(str)){
+        lout<<str<<endl;
+      }
   }
   return 0;
 }
