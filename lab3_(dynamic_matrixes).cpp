@@ -5,6 +5,7 @@
 – номер первой из строк, в которой содержится самая длинная 
 строго возрастающая последовательность элементов.
 **/
+
 #include <time.h>
 #include <algorithm>
 #include <iostream>
@@ -12,9 +13,7 @@
 
 using namespace std;
 
-int find_zero(int** arr, int m,
-              int n)  /// функция для подсчета кол-ва столбцов содерж. 0
-{
+int find_zero(int** arr, int m, int n){ // функция для подсчета кол-ва столбцов содерж. 0
   int i, j;
   int count = 0;
   for (i = 0; i < n; i++)
@@ -26,14 +25,14 @@ int find_zero(int** arr, int m,
   return count;
 }
 
-int number_of_first_row(int** arr, int m, int n) {
+int number_of_first_row(int** arr, int m, int n){
   int i, j, max_l = 1, l;
   vector<pair<int, int>> v;
   for (i = 0; i < m; i++) {
-    for (j = 0; j < n; j++) {
+    for (j = 1; j < n; j++) {
       l = 1;
-      while (arr[i] > arr[i - 1]) {
-        i++;
+      while (arr[i][j] > arr[i][j - 1]) {
+        j++;
         l++;
       }
       if (l > max_l) max_l = l;
@@ -44,6 +43,7 @@ int number_of_first_row(int** arr, int m, int n) {
   for (i = 0; i < v.size(); i++) {
     if (v[i].first > v[nmax].first) {
       nmax = i;
+      break;
     }
   }
   return v[nmax].second;
@@ -61,7 +61,7 @@ int main() {
   for (i = 0; i < m; i++)  /// Вводим половину нашей матрицы
   {
     for (j = 0; j < n; j++) {
-      arr[i][j] = rand() % 5;
+      arr[i][j] = rand() % 10;
     }
   }
   cout << "Исходная матрица" << endl;
@@ -72,7 +72,7 @@ int main() {
     }
     cout << endl;
   }
-  for (i = 0; i < m; i++)  /// остальную половину заполняем первой
+  for (i = 0; i < m; i++)  // остальную половину заполняем первой
   {
     for (j = 0; j < n; j++) {
       arr[i + m][j] = arr[i][j];
@@ -90,12 +90,12 @@ int main() {
   cout << "Номер первой строки в которой содержится самая длинная" << endl;
   cout << "строго возрастающая последовательность чисел (нумерация с 0) равен "
        << number_of_first_row(arr, 2 * m, n) << endl;
-  
+
   for (int i = 0; i < 2 * m; i++){
         delete[] arr[i];
     }
-  delete[] arr; ///очищаем массив
-  
+  delete[] arr; //очищаем массив
+
   system("pause");
   return 0;
 }
