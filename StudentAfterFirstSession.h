@@ -17,6 +17,7 @@ class StudentAfterFirstSession : public Student {
   vector<int> getMarks();
   void setMarks(int mark, int index_of_subject);
   double CalculateAverage() override;
+  double CalculateAverage(int number_of_session) override;	
   friend std::ostream& operator<<(std::ostream& out, const StudentAfterFirstSession& point);
 
 };
