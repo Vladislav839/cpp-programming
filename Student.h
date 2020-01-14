@@ -21,6 +21,7 @@ class Student {
   int getNumber_of_record();
   void setNumber_of_record(int number_of_record);
   virtual double CalculateAverage();
+  virtual double CalculateAverage(int number_of_session);
   friend std::ostream& operator<<(std::ostream& out, const Student& point);
 };
 
