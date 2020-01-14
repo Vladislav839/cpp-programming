@@ -9,13 +9,21 @@
   _marks[index_of_subject] = mark;
  }
 
- double StudentAfterFirstSession::CalculateAverage() { 
-   int sum = 0;
-   for (int i = 0; i < _marks.size(); i++) {
-     sum += _marks[i];
-   }
-   return sum / _marks.size();
- }
+ double StudentAfterFirstSession::CalculateAverage() {
+  int sum = 0;
+  for (int i = 0; i < _marks.size(); i++) {
+    sum += _marks[i];
+  }
+  return sum * 1. / _marks.size();
+}
+
+double StudentAfterFirstSession::CalculateAverage(int number_of_session) {
+  int sum = 0;
+    for (int i = 0; i < _marks.size(); i++) {
+      sum += _marks[i];
+    }
+  return sum * 1. / _marks.size();
+}
 
  std::ostream& operator<<(std::ostream& out,
                          const StudentAfterFirstSession& stud) {
