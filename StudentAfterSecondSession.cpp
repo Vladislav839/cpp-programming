@@ -17,7 +17,25 @@ double StudentAfterSecondSession::CalculateAverage() {
   for (int j = 0; j < _marks2.size(); j++) {
     sum += _marks2[j];
   }
-  return sum / (_marks.size() + _marks2.size());
+  return sum * 1. / (_marks.size() + _marks2.size());
+}
+
+double StudentAfterSecondSession::CalculateAverage(int number_of_session) {
+  int sum = 0;
+  if (number_of_session == 1){
+    for (int i = 0; i < _marks.size(); i++) {
+      sum += _marks[i];
+    }
+    return sum * 1. / _marks.size();
+  } else if (number_of_session == 2) {
+    for (int i = 0; i < _marks2.size(); i++) {
+      sum += _marks2[i];
+    }
+    return sum * 1. / _marks2.size();
+  } else {
+    std::cout << "Wrong input parametr" << std::endl;
+    return 0.0;
+  }
 }
 
 std::ostream& operator<<(std::ostream& out, const StudentAfterSecondSession& stud) {
