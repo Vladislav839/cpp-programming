@@ -45,6 +45,8 @@ void Student::setNumber_of_record(int number_of_record) {
 
 double Student::CalculateAverage() { return 0.0; }
 
+double Student::CalculateAverage(int number_of_session) { return 0.0; }
+
 std::ostream& operator<<(std::ostream& out, const Student& stud) {
   out << "ID: " << stud._uniqe_code << endl;
   out << "name: " << stud._name << endl;
